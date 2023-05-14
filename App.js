@@ -1,20 +1,29 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { Alert, Button, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Main from './components/Main.js';
+import Calling from './components/Calling.js';
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+
+  const Stack = createNativeStackNavigator();
+
+  return (<NavigationContainer>
+    <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', paddingBottom: 16 }}>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Home"
+          component={Main}
+          options={{ title: 'Welcome' }}
+        />
+
+        <Stack.Screen name="Call" options={{ title: 'Números agregados' }} component={Calling} />
+      </Stack.Navigator>
+
+
+    </ScrollView>
+  </NavigationContainer>
+
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
